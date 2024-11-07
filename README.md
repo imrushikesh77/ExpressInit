@@ -66,7 +66,7 @@ Generates a new project based on the provided configuration. Supports both JavaS
 
 ## Environment Variables
 
-- `BACKEND_URI`: Set the URI for the backend server.
+- `VITE_BACKEND_URI`: Set the URI for the backend server.
 
 ## Technologies Used
 
