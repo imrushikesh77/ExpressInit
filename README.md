@@ -14,7 +14,18 @@ Express Generator is a project scaffolding tool for Node.js, designed to quickly
 After generation, the project structure will look like this:
 
 ```bash    
-myProject/ ├── controllers/ │ └── exampleController.js ├── models/ │ └── exampleModel.js ├── routes/ │ └── exampleRoute.js ├── views/ │ └── exampleView.ejs ├── app.js ├── server.js └── package.json
+myProject/ 
+├── controllers/ 
+│ └── exampleController.js 
+├── models/ 
+│ └── exampleModel.js 
+├── routes/ 
+│ └── exampleRoute.js 
+├── views/ 
+│ └── exampleView.ejs 
+├── app.js 
+├── server.js 
+└── package.json
 ```
 
 markdown
