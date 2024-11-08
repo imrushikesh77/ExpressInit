@@ -25,6 +25,7 @@ export default function ProjectMetadata({ projectConfig, setProjectConfig }) {
           value={projectConfig.name}
           onChange={handleInputChange}
           placeholder="my-node-project"
+          name='projectName'
         />
         {warning && (
         <p className="text-yellow-500 text-sm mt-1" role="alert">
@@ -41,6 +42,7 @@ export default function ProjectMetadata({ projectConfig, setProjectConfig }) {
           onChange={e => setProjectConfig(prev => ({ ...prev, description: e.target.value }))}
           rows="2"
           placeholder="A brief description of your project"
+          name='projectDescription'
         />
       </label>
 
@@ -52,6 +54,7 @@ export default function ProjectMetadata({ projectConfig, setProjectConfig }) {
           value={projectConfig.author}
           onChange={e => setProjectConfig(prev => ({ ...prev, author: e.target.value }))}
           placeholder="John Doe <john@example.com>"
+          name='projectAuthor'
         />
       </label>
     </div>

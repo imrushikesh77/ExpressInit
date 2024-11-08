@@ -49,6 +49,7 @@ export default function DependencySearch({ packageManager, onDependencySelect })
           placeholder={`Search ${packageManager} packages...`}
           value={searchTerm}
           onChange={handleSearch}
+          name='dependencySearchTerm'
         />
         <div className="absolute left-3 top-2.5 text-gray-400">
           {isLoading ? <FaSpinner className="animate-spin" /> : <FaSearch />}
