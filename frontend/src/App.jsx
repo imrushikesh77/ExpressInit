@@ -119,10 +119,6 @@ function App() {
           </div>
 
           <div className="space-y-6">
-            <PackageManager 
-              packageManager={packageManager}
-              setPackageManager={setPackageManager}
-            />
 
             <div className="space-y-4">
               <h3 className="text-gray-300">Dependencies</h3>
