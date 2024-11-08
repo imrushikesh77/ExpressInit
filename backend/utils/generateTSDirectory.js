@@ -21,8 +21,8 @@ const generateTSDirectory = async (req, res) => {
 
   console.log("Received project configuration:", req.body);
 
-  const projectDir = path.join(__dirname, "temp_project");
-  const zipFilePath = path.join(__dirname, "project.zip");
+  const projectDir = path.join("/tmp", "temp_project");
+  const zipFilePath = path.join("/tmp", "project.zip");
 
   try {
     // Clear previous files and ensure project directory exists
