@@ -1,5 +1,4 @@
-import { TbBrandJavascript, TbFileImport } from 'react-icons/tb'
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 
 export default function ProjectMetadata({ projectConfig, setProjectConfig }) {
   const [warning, setWarning] = useState('');
@@ -14,6 +13,12 @@ export default function ProjectMetadata({ projectConfig, setProjectConfig }) {
       setProjectConfig((prev) => ({ ...prev, name: newName }))
     }
   }
+  const handleDescriptionChange = useCallback(
+    e => {
+      setProjectConfig(prev => ({ ...prev, description: e.target.value }));
+    },
+    [setProjectConfig]
+  );
   return (
     <div className="space-y-4">
       <label className="block">
@@ -39,7 +44,7 @@ export default function ProjectMetadata({ projectConfig, setProjectConfig }) {
         <textarea
           className="mt-1 px-3 py-3 block w-full rounded bg-gray-800 border-gray-700 text-white"
           value={projectConfig.description}
-          onChange={e => setProjectConfig(prev => ({ ...prev, description: e.target.value }))}
+          onChange={handleDescriptionChange}
           rows="2"
           placeholder="A brief description of your project"
           name='projectDescription'
