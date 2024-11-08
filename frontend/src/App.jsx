@@ -56,6 +56,8 @@ function App() {
     e.preventDefault()
     
     try {
+      console.log(import.meta.env.VITE_BACKEND_URI);
+      
       const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/api/generate`, {
         method: "POST",
         headers: {
