@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Header from './components/Header'
 import ProjectMetadata from './components/ProjectMetadata'
 import PackageManager from './components/PackageManager'
@@ -52,12 +52,45 @@ function App() {
     }))
   }
 
+  const [userCount, setUserCount] = useState(0)
+  const getUserCount = async () => {
+    const mockCount = await fetch(`${import.meta.env.VITE_BACKEND_URI}/api/users`)
+      .then(res => res.json())
+      .then(data => {
+        setUserCount(data.users)
+      })
+      .catch(err => console.error(err))
+  }
+
+  useEffect(() => {
+    getUserCount()
+  }, [])
+
+  const updateUserCount = async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/api/users`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to update user count');
+      }
+  
+      const data = await response.json();
+      setUserCount(data.users);
+    } catch (error) {
+      console.error('Error updating user count:', error);
+    }
+  };
+  
+
   const handleSubmit = async(e) => {
     e.preventDefault()
     
     try {
-      // console.log(import.meta.env.VITE_BACKEND_URI);
-      
       const response = await fetch(`${import.meta.env.VITE_BACKEND_URI}/api/generate`, {
         method: "POST",
         headers: {
@@ -78,6 +111,8 @@ function App() {
   
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
+      updateUserCount();
+
     } catch (error) {
       console.error("Error downloading file:", error);
     }
@@ -85,7 +120,7 @@ function App() {
 
   return (
     <div className="min-h-screen w-screen bg-gray-900 text-white p-8 overflow-x-hidden">
-      <Header />
+      <Header userCount={userCount} />
 
       <form onSubmit={handleSubmit} className="max-w-4xl mx-auto space-y-8">
         <ArchitectureInfo />
