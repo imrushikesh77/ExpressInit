@@ -13,7 +13,7 @@ export default function Header({userCount}) {
       <div className="flex items-center gap-6">
         <div className="flex items-center text-gray-400">
           <FaUsers className="mr-2 text-lg" />
-          <span className="text-sm">{userCount.toLocaleString()} users</span>
+          <span className="text-sm">{userCount} users</span>
         </div>
         <a 
           href="https://github.com/imrushikesh77/ExpressInit" 

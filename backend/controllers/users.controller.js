@@ -1,22 +1,14 @@
-import fs from 'fs/promises';
-import path from 'path';
-
-// Define the path to the JSON file inside the "data" folder
-const filePath = path.join(process.cwd(), 'data', 'users.json');
+import User from "../models/user.model.js";
 
 export const updateUsers = async(req, res) => {
     try {
         // Read the current user count
-        const data = await fs.readFile(filePath, 'utf-8');
-        const usersData = JSON.parse(data);
-        
-        // Increment the count
-        usersData.totalUsers += 1;
-
-        // Write the updated count back to the file
-        await fs.writeFile(filePath, JSON.stringify(usersData, null, 2));
-
-        // Respond with the updated count
+        const usersData = await User.findOne();
+        // Increment the user count
+        usersData.totalUsers++;
+        // Save the updated user count
+        await usersData.save();
+        // Send the updated user count in the response
         res.status(200).json({ users: usersData.totalUsers });
     } catch (error) {
         console.error('Error updating user count:', error);
@@ -26,8 +18,8 @@ export const updateUsers = async(req, res) => {
 export const getUsers = async(req, res) => {
     try {
         // Read the current user count
-        const data = await fs.readFile(filePath, 'utf-8');
-        const usersData = JSON.parse(data);
+        const usersData = await User.findOne();
+        
         res.status(200).json({ users: usersData.totalUsers });
     } catch (error) {
         console.error('Error retriving user count:', error);
